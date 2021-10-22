@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="jp">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.79.0">
+    <title>Dashboard</title>
+
+    <!-- <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/"> -->
+
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+
+
+    <!-- Custom styles for this template -->
+    <link href="/stylesheets/dashboard.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <%- include('./header') %>
+
+        <div class="container-fluid">
+            <div class="row">
+                <%- include('./sidebar') %>
+                    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                        <div
+                            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-1 border-bottom">
+                            <h1 class="h2">Statistics</h1>
+                        </div>
+                        <!-- <%= token %> -->
+                        <div class="d-grid gap-3">
+                            <form method="post" name="form01" action="./statistics">
+                                <h3>query</h3>
+                                <div class="d-grid gap-3">
+                                    <div class="col-md-6">
+                                        <label for="inputsSmartlink" class="form-label" style="color: red;">※Smartlink's
+                                            ID
+                                        </label>
+                                        <input type="text" class="form-control" name="sl" id="inputsSmartlink">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="inputFrom" class="form-label">From</label>
+                                        <input type="date" class="form-control" name="from" id="inputFrom">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="inputTo" class="form-label">To</label>
+                                        <input type="date" class="form-control" name="to" id="inputTo">
+                                    </div>
+                                    <div>
+                                        <input id="get-report" type="submit" class="btn btn-sm btn-primary"
+                                            value="Execution" />
+                                    </div>
+                                </div>
+                            </form>
+                            <form method="post" name="form01" action="./statistics/download">
+                                <input id="dl-report" type="submit" class="btn btn-sm btn-success"
+                                    value="Export To CSV" />
+                            </form>
+                        </div>
+                        <div
+                            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-1 border-bottom">
+                        </div>
+                        <h4>status code : <%= code %>
+                        </h4>
+                        <h4>message</h4>
+                        <span style="color: red;">
+                            <h4>
+                                <%= message %>
+                            </h4>
+                        </span>
+                        <div class="card overflow-auto mb-1"
+                            style="width: 100%; height: 70%; background-color: black;color: white;">
+                            <%= result %>
+                        </div>
+                        <div
+                            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-1 border-bottom">
+                        </div>
+
+                    </main>
+
+
+            </div>
+        </div>
+
+
+        <script src="/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
+            integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
+            integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha"
+            crossorigin="anonymous"></script>
+        <script src="/javascripts/dashboard.js"></script>
+        <!-- <script src="/javascripts/action.js"></script> -->
+
+</body>
+
+</html>
