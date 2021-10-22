@@ -6,6 +6,8 @@ FROM node:14.17
 # 本番環境では production
 ENV NODE_ENV=development
 
+COPY ./app /
+
 # 雛形を生成するのに必要なパッケージのインストール
 RUN npm install -g express-generator
 
