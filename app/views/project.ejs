@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Hugo 0.79.0">
-  <title>Dashboard</title>
+  <title>Project</title>
 
   <!-- <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/"> -->
 
@@ -23,6 +23,10 @@
       -webkit-user-select: none;
       -moz-user-select: none;
       user-select: none;
+    }
+
+    .table-clickable {
+      cursor: pointer;
     }
 
     @media (min-width: 768px) {
@@ -43,17 +47,51 @@
     <div class="container-fluid">
       <div class="row">
         <%- include('./sidebar') %>
+
           <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div
               class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-              <h1 class="h2">Dashboard</h1>
+              <h1 class="h2">Project</h1>
             </div>
-            <h2>工事中</h2>
+            <!-- <button type="button" class="btn btn-outline-info">+ Create New Project</button>
+            <form method="post" name="form01" action="./project/sl">
+              <input id="dl-report" type="submit" class="btn btn-sm btn-success" value="sl" />
+            </form> -->
+
+            <!-- <div class="container-fluid">
+              <div class="row pt-3"> -->
+            <div class="table-responsive">
+
+              <table class="table">
+                <thead class="table-light">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">sl_id</th>
+                    <th scope="col">Tags</th>
+                    <th scope="col">Last updated</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <div class="row">
+                    <% cnt=0 %>
+                      <% for(var i in sl) { %>
+                        <% if(!sl[i].is_done){ %>
+                          <% cnt +=1 %>
+                            <%- include('./project-list', {val:sl[i], no:(Number(cnt))}) %>
+                              <% } %>
+                                <% } %>
+                  </div>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- </div>
+            </div> -->
           </main>
       </div>
     </div>
-
-
     <script src="/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
@@ -63,6 +101,7 @@
       integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha"
       crossorigin="anonymous"></script>
     <script src="/javascripts/dashboard.js"></script>
+    <script src="/jquery/dist/jquery.min.js"></script>
 </body>
 
 </html>

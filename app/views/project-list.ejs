@@ -1,0 +1,27 @@
+<% var obj=val; %>
+    <form action="./project/select" method="post">
+        <tr>
+            <td scope="col" class="text-wrap">
+                <%= no %>
+            </td>
+            <td scope="col" class="text-wrap">
+                <%= obj.title %>
+                    <input type="hidden" name="title" value="<%= obj.title %>">
+            </td>
+            <td scope="col" class="text-wrap">
+                <%= obj.id %>
+                    <input type="hidden" name="id" value="<%= obj.id %>">
+            </td>
+            <td scope="col" class="text-wrap">
+                <%= obj.tags %>
+            </td>
+            <td scope="col" class="text-wrap">
+                <%= obj.updated_at %>
+            </td>
+            <td scope="col-md-2" style="white-space: normal;">
+                <input type="submit" class="btn btn-sm btn-outline-info" value="Select" />
+                <!-- <input type="submit" class="btn btn-sm btn-outline-info sl-project" value="Select"
+                    onclick="selectAction(this)" data-title="<%= obj.id %>" /> -->
+            </td>
+        </tr>
+    </form>

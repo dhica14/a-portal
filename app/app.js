@@ -11,6 +11,8 @@ var usersRouter = require('./routes/users');
 var homeRouter = require('./routes/home');
 var dashboardRouter = require('./routes/dashboard');
 var statisticsRouter = require('./routes/statistics');
+var projectRouter = require('./routes/project');
+var statisticsPtn01Router = require('./routes/statistics_ptn01');
 
 var app = express();
 
@@ -40,6 +42,8 @@ app.use('/users', usersRouter);
 app.use('/home', homeRouter);
 app.use('/dashboard', dashboardRouter);
 app.use('/statistics', statisticsRouter);
+app.use('/project', projectRouter);
+app.use('/statistics_ptn01', statisticsPtn01Router);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

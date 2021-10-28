@@ -6,7 +6,7 @@ var json2csv = require('json2csv');
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
-    res.render('statistics', { token: req.session._id, result: "Report", code: "", message: "" });
+    res.render('statistics_ptn01', { token: req.session._id, result: "Report", code: "", message: "" });
 });
 
 router.post('/', function (req, res, next) {
@@ -19,8 +19,7 @@ router.post('/', function (req, res, next) {
 
     // var manager = "select rowNumberInAllBlocks() rowNum, fp, substr( max(concat(toString(dt),user)), 20) userName, any(email) email, if( email = '', if(userName = 'none', '', userName),if(userName = 'none', email,concat(email, ' (send by ', userName, ')'))) lastUser, min(dt) firstVisit, max(dt) lastVisit, any(timezone) timezone, any(ua) ua, any(os_name) osName, any(os_version) osVersion, any(device_model) deviceModel, any(device_type) deviceType, any(device_vendor) deviceVendor, any(cpu_architecture) cpuArchitecture, any(browser_major) browserMajor, any(browser_name) browserName, any(browser_version) browserVersion, any(engine_name) engineName, any(engine_version) engineVersion, countIf(action, action='ENTER') opened, countIf(action, action in ('DOWNLOAD','DOWNLOAD_VIEW')) downloaded, countIf(action, action='PRINT') printed, uniqExact(page, action='OPEN') pagesViewed, countIf(action, action='OPEN') pageViews, sumIf(duration, action='PAGE_VIEW') viewsSeconds from wizeflow.tracks  where document_id = '6167f7f3f32f840012e95064' AND fp!='' AND user!='anonymous' group by fp order by viewsSeconds desc";
 
-    var manager = "select rowNumberInAllBlocks() rowNum, fp, substr( max(concat(toString(dt),user)), 20) userName, any(email) email, if( email = '', if(userName = 'none', '', userName),if(userName = 'none', email,concat(email, ' (send by ', userName, ')'))) lastUser, min(dt) firstVisit, max(dt) lastVisit, any(timezone) timezone, any(ua) ua, any(os_name) osName, any(os_version) osVersion, any(device_model) deviceModel, any(device_type) deviceType, any(device_vendor) deviceVendor, any(cpu_architecture) cpuArchitecture, any(browser_major) browserMajor, any(browser_name) browserName, any(browser_version) browserVersion, any(engine_name) engineName, any(engine_version) engineVersion, countIf(action, action='ENTER') opened, countIf(action, action in ('DOWNLOAD','DOWNLOAD_VIEW')) downloaded, countIf(action, action='PRINT') printed, uniqExact(page, action='OPEN') pagesViewed, countIf(action, action='OPEN') pageViews, sumIf(duration, action='PAGE_VIEW') viewsSeconds from wizeflow.tracks  where document_id = '" + req.body.sl + "' AND fp!='' AND user!='anonymous' group by fp order by viewsSeconds desc";
-
+    var manager = "select rowNumberInAllBlocks() rowNum, fp, any(member_id) menber_id, any(content_id) content_id, any(organization_id) organization_id, substr( max(concat(toString(dt),user)), 20) userName, any(email) email, if( email = '', if(userName = 'none', '', userName),if(userName = 'none', email,concat(email, ' (send by ', userName, ')'))) lastUser, min(dt) firstVisit, max(dt) lastVisit, any(timezone) timezone, any(ua) ua, any(os_name) osName, any(os_version) osVersion, any(device_model) deviceModel, any(device_type) deviceType, any(device_vendor) deviceVendor, any(cpu_architecture) cpuArchitecture, any(browser_major) browserMajor, any(browser_name) browserName, any(browser_version) browserVersion, any(engine_name) engineName, any(engine_version) engineVersion, countIf(action, action='ENTER') opened, countIf(action, action in ('DOWNLOAD','DOWNLOAD_VIEW')) downloaded, countIf(action, action='PRINT') printed, uniqExact(page, action='OPEN') pagesViewed, countIf(action, action='OPEN') pageViews, sumIf(duration, action='PAGE_VIEW') viewsSeconds from wizeflow.tracks  where document_id = 'IsetoSmart02' AND fp!='' AND user!='anonymous' group by fp order by viewsSeconds desc";
 
     console.log(manager);
     data.append('query', manager);
@@ -39,11 +38,11 @@ router.post('/', function (req, res, next) {
         .then(function (response) {
             const data = JSON.stringify(response.data.data);
             req.session.report = response.data.data;
-            res.render('statistics', { token: req.session._id, result: data, code: "200", message: "{status:success, sl:" + req.body.sl + ", from:" + req.body.from + ", to:" + req.body.to + " }" });
+            res.render('statistics_ptn01', { token: req.session._id, result: data, code: "200", message: "{status:success, sl:" + req.body.sl + ", from:" + req.body.from + ", to:" + req.body.to + " }" });
         })
         .catch(function (error) {
             console.log(error);
-            res.render('statistics', { token: req.session._id, result: "", code: "900", message: error });
+            res.render('statistics_ptn01', { token: req.session._id, result: "", code: "900", message: error });
         });
 
 });
